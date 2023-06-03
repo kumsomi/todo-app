@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To do app</title>
+    </head>
+    <body>
+        <h1>to do app</h1>
+        <form method="post" action="/">
+            <input type="text" name="todoTitle" id="todoTitle" placeholder="add todo..">
+            <input type="text" name="description" id="description" placeholder="description">
+            <button type="submit">Add</button>
+        </form>
+        <h4>Todos:</h4>
+        {{#each todoActivities}}
+        <div>
+            <h4>{{this.todoTitle}}</h4>
+            <p>{{this.description}}</p>
+        </div>
+        <form method="post" action="/{{this.id}}">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Delete</button>
+        </form>
+        {{!-- <button>Delete</button> --}}
+        {{/each}}
+    </body>
+</html>
