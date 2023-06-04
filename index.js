@@ -38,13 +38,26 @@ app.post("/",(req,res)=>{
 app.get('/',(req,res)=>{
     res.render("home",{todoActivities:todoData})
 })
-// app.patch() //-> for updating
-app.delete('/:id',(req,res)=>{
+app.get('/:id',(req,res)=>{
     const todoId=req.params.id
-    console.log(todoId)
-}) //-> for deleting
-
-// Todo app-> add new task, show added tasks, update tasks, delete tasks 
+    res.json(todoData.find(eachtodo=>eachtodo.id===parseInt(todoId)))
+})
+app.delete('/:id',(req,res)=>{
+    // const todoId=req.params.id
+    // const requiredtodo=todoData.filter(eachtodo=>eachtodo.id===parseInt(todoId))
+    // if (requiredtodo) todoData.delete(requiredtodo)
+    // fs.writeFileSync('./data/todoData.json',todoData)    
+    // res.redirect('/')
+    const todoId = req.params.id;
+    const requiredTodoIndex = todoData.findIndex(eachtodo => eachtodo.id === parseInt(todoId));
+    
+    if (requiredTodoIndex !== -1) {
+        todoData.splice(requiredTodoIndex, 1);
+        fs.writeFileSync('./data/todoData.json', JSON.stringify(todoData));
+    }
+    
+    res.redirect('/');
+}) 
 
 
 .listen(portNo,()=>console.log(`server listening at http://localhost:${portNo}`))

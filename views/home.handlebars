@@ -16,7 +16,7 @@
             <h4>{{this.todoTitle}}</h4>
             <p>{{this.description}}</p>
         </div>
-        <form method="post" action="/{{this.id}}">
+        <form method="POST" action="/{{this.id}}?_method=DELETE">
             <input type="hidden" name="_method" value="DELETE">
             <button type="submit">Delete</button>
         </form>
