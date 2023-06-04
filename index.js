@@ -43,11 +43,6 @@ app.get('/:id',(req,res)=>{
     res.json(todoData.find(eachtodo=>eachtodo.id===parseInt(todoId)))
 })
 app.delete('/:id',(req,res)=>{
-    // const todoId=req.params.id
-    // const requiredtodo=todoData.filter(eachtodo=>eachtodo.id===parseInt(todoId))
-    // if (requiredtodo) todoData.delete(requiredtodo)
-    // fs.writeFileSync('./data/todoData.json',todoData)    
-    // res.redirect('/')
     const todoId = req.params.id;
     const requiredTodoIndex = todoData.findIndex(eachtodo => eachtodo.id === parseInt(todoId));
     
